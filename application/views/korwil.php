@@ -2,7 +2,7 @@
     <section class="content">
         <div class="row vertical-center-row">
             <div class="col-xs-7">
-                <div class="box box-warning box-solid">
+                <div class="box box-success box-solid">
     
                     <div class="box-header">
                         <h3 class="box-title">DATA MONITORING BIOMEDIS KORWIL</h3>
