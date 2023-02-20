@@ -35,14 +35,12 @@
     private $add_columns    = array();
     private $edit_columns   = array();
     private $unset_columns  = array();
-    //var $db_name='default';
     /**
     * Copies an instance of CI
     */
     public function __construct()
     {
       $this->ci =& get_instance();
-      //$this->db=$this->ci->load->database("default", TRUE);
     }
     /**
     * If you establish multiple databases in config/database.php this will allow you to

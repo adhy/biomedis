@@ -32,19 +32,19 @@
             </tr>
                 <!--korwil2-->
             <tr>
-                <td>1</td>
-                <td><a href="<?php echo base_url($data2['url']);?>" class="font-weight-bold"><?php echo $data2['nm'];?></a></td>
-                <td><?php $data=korwil('1'); echo $data2['jmh'];?></td>
-                <td><?php $data=korwil('1'); echo $data2['jmh'];?></td>
-                <td><?php $data=korwil('1'); echo $data2['jmh'];?></td>
+                <td>2</td>
+                <td><?php echo $data2['nm'];?></td>
+                <td><?php echo $data2['jmh'];?></td>
+                <td><span id="dsrevr2">Memuat di server</span></td>
+                <td><span id="dsrevr"><a href="<?php echo base_url($data2['url']);?>" class="btn btn-default btn-sm">Lihat Daftar Provinsi</a></span></td>
             </tr>
                 <!--korwil3-->
             <tr>
-                <td>1</td>
-                <td><a href="<?php echo base_url($data3['url']);?>" class="font-weight-bold"><?php echo $data3['nm'];?></a></td>
+                <td>3</td>
+                <td><?php echo $data3['nm'];?></td>
                 <td><?php echo $data3['jmh'];?></td>
-                <td><?php echo $data3['jmh'];?></td>
-                <td><?php echo $data3['jmh'];?></td>
+                <td><span id="dsrevr3">Memuat di server</span></td>
+                <td><span id="dsrevr"><a href="<?php echo base_url($data3['url']);?>" class="btn btn-default btn-sm">Lihat Daftar Provinsi</a></span></td>
             </tr>
 	    
         </table>
@@ -66,8 +66,11 @@
                     async: true,
                     success : function(response){
                         var dsrevr = response.k1;
+                        var dsrevr2 = response.k2;
+                        var dsrevr3 = response.k3;
                         $('#dsrevr').text(dsrevr); 
-                        console.log(dsrevr);
+                        $('#dsrevr2').text(dsrevr2); 
+                        $('#dsrevr3').text(dsrevr3); 
                             
                     }
                 });

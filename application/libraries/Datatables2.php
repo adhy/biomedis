@@ -13,7 +13,7 @@
   *             Yusuf Ozdemir <yusuf@ozdemir.be>
   * @link       http://ellislab.com/forums/viewthread/160896/
   */
-  class Datatables
+  class Datatables2
   {
     /**
     * Global container variables for chained argument results
@@ -35,24 +35,24 @@
     private $add_columns    = array();
     private $edit_columns   = array();
     private $unset_columns  = array();
-    //var $db_name='default';
+    //var $db_name='db2';
     /**
     * Copies an instance of CI
     */
     public function __construct()
     {
       $this->ci =& get_instance();
-      //$this->db=$this->ci->load->database("default", TRUE);
+      $this->ci->db=$this->ci->load->database("db2", TRUE);
     }
     /**
     * If you establish multiple databases in config/database.php this will allow you to
     * set the database (other than $active_group) - more info: http://ellislab.com/forums/viewthread/145901/#712942
     */
-    public function set_database($db_name)
-    {
-      $db_data = $this->ci->load->database($db_name, TRUE);
-      $this->ci->db = $db_data;
-    }
+    // public function set_database($db_name)
+    // {
+    //   $db_data = $this->ci->load->database($db_name, TRUE);
+    //   $this->ci->db = $db_data;
+    // }
     /**
     * Generates the SELECT portion of the query
     *

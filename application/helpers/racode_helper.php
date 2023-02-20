@@ -143,16 +143,16 @@ function korwil($bln)
 				return $data;
 				break;
 			case 2:
-                $data=array('nm'=>'Koordinator Wilayah 2','jmh'=>'100','url'=>'korwil2');
+                $data=array('nm'=>'Koordinator Wilayah 2','jmh'=>'N/A','url'=>'korwil2');
 				return $data;
 				break;
 			case 3:
-                $data=array('nm'=>'Koordinator Wilayah 3','jmh'=>'100','url'=>'korwil3');
+                $data=array('nm'=>'Koordinator Wilayah 3','jmh'=>'N/A','url'=>'korwil3');
 				return $data;
 				break;
 		}
 	}
-    function jmhbs($data)
+    function jmhbstprovk1($data)
 	{$datamasuk=substr($data,0,2);
 		switch ($datamasuk)
 		{
@@ -160,6 +160,81 @@ function korwil($bln)
 				return 'jumlah BS 300';
 				break;
 			case 32:
+                return 'jumlah BS 400';
+				break;
+            default:
+                return 'N/A';
+                break;
+		}
+	}
+    function jmhbstprovk2($data)
+	{$datamasuk=substr($data,0,2);
+		switch ($datamasuk)
+		{
+			case 13:
+				return 'jumlah BS 300';
+				break;
+			case 32:
+                return 'jumlah BS 400';
+				break;
+            default:
+                return 'N/A';
+                break;
+		}
+	}
+    function jmhbstprovk3($data)
+	{$datamasuk=substr($data,0,2);
+		switch ($datamasuk)
+		{
+			case 13:
+				return 'jumlah BS 300';
+				break;
+			case 32:
+                return 'jumlah BS 400';
+				break;
+            default:
+                return 'N/A';
+                break;
+		}
+	}
+    function jmhbstkabk3($data)
+	{$datamasuk=substr($data,0,4);
+		switch ($datamasuk)
+		{
+			case 3501:
+				return 'jumlah BS 300';
+				break;
+			case 3502:
+                return 'jumlah BS 400';
+				break;
+            default:
+                return 'N/A';
+                break;
+		}
+	}
+    function jmhbstkabk2($data)
+	{$datamasuk=substr($data,0,4);
+		switch ($datamasuk)
+		{
+			case 3501:
+				return 'jumlah BS 300';
+				break;
+			case 3502:
+                return 'jumlah BS 400';
+				break;
+            default:
+                return 'N/A';
+                break;
+		}
+	}
+    function jmhbstkabk1($data)
+	{$datamasuk=substr($data,0,4);
+		switch ($datamasuk)
+		{
+			case 3501:
+				return 'jumlah BS 300';
+				break;
+			case 3502:
                 return 'jumlah BS 400';
 				break;
             default:

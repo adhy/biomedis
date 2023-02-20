@@ -9,16 +9,38 @@ class Korwil_model extends CI_Model
     public $table = 'ssgi2022_dict';
     public $id = 'caseids';
     public $order = 'DESC';
+    public $table2 = 'ssgi2022_dict2';
+    public $id2 = 'caseids';
+    public $order2 = 'DESC';
+    public $table3 = 'ssgi2022_dict3';
+    public $id3 = 'caseids';
+    public $order3 = 'DESC';
+    public $db2;
+    public $db3;
 
     function __construct()
     {
         parent::__construct();
+        $this->db2= $this->load->database("db2", TRUE);
+        $this->db3= $this->load->database("db3", TRUE);
     }
     function get_by_id($id,$di,$gp)
     {   $this->db->select($id);
         $this->db->where($di);
         $this->db->group_by($gp);
         return $this->db->get($this->table)->row();
+    }
+    function get_by_id2($id,$di,$gp)
+    {   $this->db2->select($id);
+        $this->db2->where($di);
+        $this->db2->group_by($gp);
+        return $this->db2->get($this->table2)->row();
+    }
+    function get_by_id3($id,$di,$gp)
+    {   $this->db3->select($id);
+        $this->db3->where($di);
+        $this->db3->group_by($gp);
+        return $this->db3->get($this->table3)->row();
     }
 
 }

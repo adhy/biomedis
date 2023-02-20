@@ -21,7 +21,7 @@ class Korwil1_model extends CI_Model
         $this->datatables->select("caseids,json_extract(uncompress(questionnaire), '$.id.P101')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.PROP_TEXT')as prov,count(json_extract(uncompress(questionnaire), '$.id.P101'))as jmh_ruta");
         $this->datatables->from('ssgi2022_dict');
         //$this->datatables->where("json_extract(uncompress(questionnaire), '$.id.P101')=13");
-        $this->datatables->add_column("jmhbsbps",'$1','jmhbs(caseids)');
+        $this->datatables->add_column("jmhbsbps",'$1','jmhbstprovk1(caseids)');
         //$this->datatables->add_column("modified_time",'$1','convdatime(modified_time)');
         //$this->datatables->add_column("created_time",'$1','convdatime(created_time)');
         $this->datatables->where_in("json_extract(uncompress(`questionnaire`), '$.BLOK_13.NM_KORWIL')",$data);

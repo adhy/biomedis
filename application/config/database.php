@@ -72,34 +72,74 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $active_group = 'default';
 $query_builder = TRUE;
-$typec = 'local109';
-if ($typec == 'local1'){
-	$hostname = 'localhost';
-	$username = 'naisyanr_farm';
-	$password = '#o%^^ll!_(?}b@~rk*';
-	$database = 'naisyanr_ski2023';
-}elseif($typec == 'local2'){
-	$hostname = 'localhost';
-	$username = 'pusjak1';
-	$password = 'LitbangkesPusjak18164';
-	$database = 'pusjak1_surat';
-}else{
-	$hostname = 'localhost';
-	$username = 'root';
-	$password = '';
-	$database = 'ski2023';
-}
+// $typec = 'local109';
+// if ($typec == 'local1'){
+// 	$hostname = 'localhost';
+// 	$username = 'naisyanr_farm';
+// 	$password = '#o%^^ll!_(?}b@~rk*';
+// 	$database = 'naisyanr_ski2023';
+// }elseif($typec == 'local2'){
+// 	$hostname = 'localhost';
+// 	$username = 'pusjak1';
+// 	$password = 'LitbangkesPusjak18164';
+// 	$database = 'pusjak1_surat';
+// }else{
+// 	$hostname = 'localhost';
+// 	$username = 'root';
+// 	$password = '';
+// 	$database = 'ski2023';
+// }
 
 $db['default'] = array(
 	'dsn'	=> '',
-	// 'hostname' => 'localhost',
-	// 'username' => 'root',
-	// 'password' => '',
-	// 'database' => 'ski2023',
-	'hostname' => $hostname,
-	'username' => $username,
-	'password' => $password,
-	'database' => $database,
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'ski2023',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+$db['db2'] = array(
+	'dsn'	=> '',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'ski20232',
+	'dbdriver' => 'mysqli',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+$db['db3'] = array(
+	'dsn'	=> '',
+	'hostname' => 'localhost',
+	'username' => 'silly',
+	'password' => '321',
+	'database' => 'ski20233',
+	'dbdriver' => 'mysqli',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

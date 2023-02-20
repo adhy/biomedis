@@ -3,33 +3,34 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Provinsi_model extends CI_Model
+class Korwil1_model3 extends CI_Model
 {
 
-    public $table = 'ssgi2022_dict';
+    public $table = 'ssgi2022_dict3';
     public $id = 'caseids';
     public $order = 'DESC';
 
     function __construct()
     {
         parent::__construct();
+        $this->db= $this->load->database("db3", TRUE);
     }
 
     // datatables
     function json($data) {
-        $this->datatables->select("caseids,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB_TEXT')as kab,count(json_extract(uncompress(`questionnaire`), '$.BLOK_13.KAB')) as jmh_ruta");
-        //$this->datatables->select("caseids,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB_TEXT')as kab,count(json_extract(uncompress(`questionnaire`), '$.BLOK_13.KAB')) as jmh_ruta,modified_time,created_time");
-        $this->datatables->from('ssgi2022_dict');
+        //$this->datatables->select("caseids,json_extract(uncompress(questionnaire), '$.id.P101')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.PROP_TEXT')as prov,count(json_extract(uncompress(questionnaire), '$.id.P101'))as jmh_ruta,modified_time,created_time");
+        $this->datatables3->select("caseids,json_extract(uncompress(questionnaire), '$.id.P101')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.PROP_TEXT')as prov,count(json_extract(uncompress(questionnaire), '$.id.P101'))as jmh_ruta");
+        $this->datatables3->from('ssgi2022_dict3');
         //$this->datatables->where("json_extract(uncompress(questionnaire), '$.id.P101')=13");
-        $this->datatables->add_column("jmhbsbps",'$1','jmhbstkabk1(caseids)');
-        // $this->datatables->add_column("modified_time",'$1','convdatime(modified_time)');
-        // $this->datatables->add_column("created_time",'$1','convdatime(created_time)');
-        $this->datatables->where("substr(caseids,1,2)",$data);
-        $this->datatables->group_by("json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')");
+        $this->datatables3->add_column("jmhbsbps",'$1','jmhbstprovk3(caseids)');
+        //$this->datatables->add_column("modified_time",'$1','convdatime(modified_time)');
+        //$this->datatables->add_column("created_time",'$1','convdatime(created_time)');
+        $this->datatables3->where_in("json_extract(uncompress(`questionnaire`), '$.BLOK_13.NM_KORWIL')",$data);
+        $this->datatables3->group_by("json_extract(uncompress(questionnaire), '$.id.P101')");
         //add this line for join
         //$this->datatables->join('table2', 'vis.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('korwil1/kab_kota/$1'),'Lihat Kecamatan dan NKS', array('class' => 'btn btn-default btn-sm')), 'substr(caseids,0,4)');
-        return $this->datatables->generate();
+        $this->datatables3->add_column('action', anchor(site_url('korwil3/provinsi/$1'),'Lihat Daftar Kab/Kota', array('class' => 'btn btn-default btn-sm')), 'substr(caseids,0,2)');
+        return $this->datatables3->generate();
     }
 
     // get all
@@ -40,13 +41,10 @@ class Provinsi_model extends CI_Model
     }
 
     // get data by id
-    function get_by_id($id,$di,$gp)
-    {   $this->db->select($id);
-        $this->db->where($di);
-        $this->db->group_by($gp);
+    function get_by_id($id)
+    {
+        $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
-        //$this->db->group_by($this->table);
-        //return $this->db->get($this->table)->row();
     }
     
     // get total rows

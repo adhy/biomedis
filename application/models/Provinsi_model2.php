@@ -3,33 +3,34 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Provinsi_model extends CI_Model
+class Provinsi_model2 extends CI_Model
 {
 
-    public $table = 'ssgi2022_dict';
+    public $table = 'ssgi2022_dict2';
     public $id = 'caseids';
     public $order = 'DESC';
 
     function __construct()
     {
         parent::__construct();
+        $this->db= $this->load->database("db2", TRUE);
     }
 
     // datatables
     function json($data) {
-        $this->datatables->select("caseids,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB_TEXT')as kab,count(json_extract(uncompress(`questionnaire`), '$.BLOK_13.KAB')) as jmh_ruta");
-        //$this->datatables->select("caseids,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB_TEXT')as kab,count(json_extract(uncompress(`questionnaire`), '$.BLOK_13.KAB')) as jmh_ruta,modified_time,created_time");
-        $this->datatables->from('ssgi2022_dict');
-        //$this->datatables->where("json_extract(uncompress(questionnaire), '$.id.P101')=13");
-        $this->datatables->add_column("jmhbsbps",'$1','jmhbstkabk1(caseids)');
-        // $this->datatables->add_column("modified_time",'$1','convdatime(modified_time)');
-        // $this->datatables->add_column("created_time",'$1','convdatime(created_time)');
-        $this->datatables->where("substr(caseids,1,2)",$data);
-        $this->datatables->group_by("json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')");
+        $this->datatables2->select("caseids,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB_TEXT')as kab,count(json_extract(uncompress(`questionnaire`), '$.BLOK_13.KAB')) as jmh_ruta");
+        //$this->datatables2->select("caseids,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB_TEXT')as kab,count(json_extract(uncompress(`questionnaire`), '$.BLOK_13.KAB')) as jmh_ruta,modified_time,created_time");
+        $this->datatables2->from('ssgi2022_dict2');
+        //$this->datatables2->where("json_extract(uncompress(questionnaire), '$.id.P101')=13");
+        $this->datatables2->add_column("jmhbsbps",'$1','jmhbstkabk2(caseids)');
+        // $this->datatables2->add_column("modified_time",'$1','convdatime(modified_time)');
+        // $this->datatables2->add_column("created_time",'$1','convdatime(created_time)');
+        $this->datatables2->where("substr(caseids,1,2)",$data);
+        $this->datatables2->group_by("json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')");
         //add this line for join
-        //$this->datatables->join('table2', 'vis.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('korwil1/kab_kota/$1'),'Lihat Kecamatan dan NKS', array('class' => 'btn btn-default btn-sm')), 'substr(caseids,0,4)');
-        return $this->datatables->generate();
+        //$this->datatables2->join('table2', 'vis.field = table2.field');
+        $this->datatables2->add_column('action', anchor(site_url('korwil2/kab_kota/$1'),'Lihat Kecamatan dan NKS', array('class' => 'btn btn-default btn-sm')), 'substr(caseids,0,4)');
+        return $this->datatables2->generate();
     }
 
     // get all
