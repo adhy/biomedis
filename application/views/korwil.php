@@ -1,11 +1,11 @@
 <div class="container container-table">
     <section class="content">
         <div class="row vertical-center-row">
-            <div class="col-xs-7">
+            <div class="col-xs-10">
                 <div class="box box-success box-solid">
     
                     <div class="box-header">
-                        <h3 class="box-title">DATA MONITORING BIOMEDIS KORWIL</h3>
+                        <h3 class="box-title">DAFTAR KOORDINATOR WILAYAH (KORWIL)</h3>
                     </div>
         
         <div class="box-body">
@@ -15,18 +15,20 @@
             <thead>
                 <tr>
                     <th width="30px">No</th>
-		    <th>Koordinator Wilayah</th>
-		    <th>Jumlah RT</th>
+		    <th>Nama Korwil</th>
+		    <th>Jumlah RT Seharusnya</th>
 		    <th>Jumlah RT Pada Server</th>
+		    <th>Tindakan</th>
                 </tr>
             </thead>
             <tbody>
                 <!--korwil1-->
             <tr>
                 <td>1</td>
-                <td><a href="<?php echo base_url($data1['url']);?>" class="font-weight-bold"><?php echo $data1['nm'];?></a></td>
+                <td><?php echo $data1['nm'];?></td>
                 <td><?php $data=korwil('1'); echo $data1['jmh'];?></td>
-                <td><span id="dsrevr">Proses di server</span></td>
+                <td><span id="dsrevr">Memuat di server</span></td>
+                <td><span id="dsrevr"><a href="<?php echo base_url($data1['url']);?>" class="btn btn-default btn-sm">Lihat Daftar Provinsi</a></span></td>
             </tr>
                 <!--korwil2-->
             <tr>
@@ -34,11 +36,13 @@
                 <td><a href="<?php echo base_url($data2['url']);?>" class="font-weight-bold"><?php echo $data2['nm'];?></a></td>
                 <td><?php $data=korwil('1'); echo $data2['jmh'];?></td>
                 <td><?php $data=korwil('1'); echo $data2['jmh'];?></td>
+                <td><?php $data=korwil('1'); echo $data2['jmh'];?></td>
             </tr>
                 <!--korwil3-->
             <tr>
                 <td>1</td>
                 <td><a href="<?php echo base_url($data3['url']);?>" class="font-weight-bold"><?php echo $data3['nm'];?></a></td>
+                <td><?php echo $data3['jmh'];?></td>
                 <td><?php echo $data3['jmh'];?></td>
                 <td><?php echo $data3['jmh'];?></td>
             </tr>

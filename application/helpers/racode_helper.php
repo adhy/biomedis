@@ -162,6 +162,9 @@ function korwil($bln)
 			case 32:
                 return 'jumlah BS 400';
 				break;
+            default:
+                return 'N/A';
+                break;
 		}
 	}
     function convdatime($data)

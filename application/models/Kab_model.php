@@ -17,17 +17,18 @@ class Kab_model extends CI_Model
 
     // datatables
     function json($data) {
-        $this->datatables->select("concat('KECAMATAN ',json_unquote(json_extract(uncompress(questionnaire), '$.BLOK_13.KEC_TEXT')))as kec,caseids,json_extract(uncompress(questionnaire), '$.id.P107')as kode_nks,count(json_extract(uncompress(questionnaire), '$.id.P108'))as jmh_ruta,modified_time,created_time");
+        //$this->datatables->select("concat('KECAMATAN ',json_unquote(json_extract(uncompress(questionnaire), '$.BLOK_13.KEC_TEXT')))as kec,caseids,json_extract(uncompress(questionnaire), '$.id.P107')as kode_nks,count(json_extract(uncompress(questionnaire), '$.id.P108'))as jmh_ruta,modified_time,created_time");
+        $this->datatables->select("concat('&#10148; KECAMATAN ',json_unquote(json_extract(uncompress(questionnaire), '$.BLOK_13.KEC_TEXT')))as kec,caseids,json_unquote(json_extract(uncompress(questionnaire), '$.id.P107'))as kode_nks,count(json_extract(uncompress(questionnaire), '$.id.P108'))as jmh_ruta");
         $this->datatables->from('ssgi2022_dict');
         //$this->datatables->where("json_extract(uncompress(questionnaire), '$.id.P101')=13");
-        $this->datatables->add_column("jmhbsbps",'$1','jmhbs(caseids)');
-        $this->datatables->add_column("modified_time",'$1','convdatime(modified_time)');
-        $this->datatables->add_column("created_time",'$1','convdatime(created_time)');
-        $this->datatables->where("json_extract(uncompress(questionnaire), '$.id.P102')=".$data."");
+        //$this->datatables->add_column("jmhbsbps",'$1','jmhbs(caseids)');
+        // $this->datatables->add_column("modified_time",'$1','convdatime(modified_time)');
+        // $this->datatables->add_column("created_time",'$1','convdatime(created_time)');
+        $this->datatables->where("json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')=".$data."");
         $this->datatables->group_by("json_extract(uncompress(questionnaire), '$.id.P107')");
         //add this line for join
         //$this->datatables->join('table2', 'vis.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('korwil1/nksview/$1'),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-danger btn-sm')), 'substr(caseids, 11, 5)');
+        $this->datatables->add_column('action', anchor(site_url('korwil1/nksview/$1'),'Lihat Daftra KK', array('class' => 'btn btn-default btn-sm')), 'substr(caseids, 11, 5)');
         return $this->datatables->generate();
     }
 
@@ -50,11 +51,8 @@ class Kab_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('caseids', $q);
-	$this->db->or_like("json_extract(uncompress(questionnaire), '$.id.P101')as kode_p", $q);
-	$this->db->or_like("json_extract(uncompress(questionnaire), '$.BLOK_13.PROP_TEXT')as prov", $q);
-	$this->db->or_like('modified_time', $q);
-	$this->db->or_like('created_time', $q);
+	$this->db->like("json_extract(uncompress(questionnaire), '$.id.P107')as kode_nks", $q);
+	$this->db->or_like("json_unquote(json_extract(uncompress(questionnaire), '$.BLOK_13.KEC_TEXT')))as kec", $q);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -62,11 +60,8 @@ class Kab_model extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('caseids', $q);
-	$this->db->or_like("json_extract(uncompress(questionnaire), '$.id.P101')as kode_p", $q);
-	$this->db->or_like("json_extract(uncompress(questionnaire), '$.BLOK_13.PROP_TEXT')as prov", $q);
-	$this->db->or_like('modified_time', $q);
-	$this->db->or_like('created_time', $q);
+	$this->db->like("json_extract(uncompress(questionnaire), '$.id.P107')as kode_nks", $q);
+	$this->db->or_like("json_unquote(json_extract(uncompress(questionnaire), '$.BLOK_13.KEC_TEXT')))as kec", $q);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }

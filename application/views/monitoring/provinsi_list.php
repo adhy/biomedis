@@ -1,19 +1,19 @@
-<section class="content-header">
-<ol class="breadcrumb">
-<li><a href="<?=base_url()?>"><i class="fa fa-dashboard"></i> Index</a></li>
-<li><a href="<?=base_url($this->session->userdata('urlv1'))?>">Koordinator Wilayah</a></li>
-<li class="active">Provinsi</li>
-</ol>
-</section>
-<div class="content">
+<div class="container container-table">
     <section class="content">
-        <div class="row">
+        <div class="row vertical-center-row">
             <div class="col-xs-12">
                 <div class="box box-success box-solid">
     
                     <div class="box-header">
-                        <h3 class="box-title">DATA MONITORING BIOMEDIS PROVINSI <?=$this->session->userdata('nmprov')?></h3>
+                        <h3 class="box-title">DATA MONITORING BIOMEDIS PROVINSI <?=$this->session->userdata('publicprov');?> - <?=$this->session->userdata('nmprov')?></h3>
                     </div>
+                    <section class="content-header">
+                    <ol class="breadcrumb">
+                    <li><a href="<?=base_url()?>"><i class="fa fa-dashboard"></i> Index</a></li>
+                    <li><a href="<?=base_url($this->session->userdata('urlv1'))?>">Koordinator Wilayah</a></li>
+                    <li class="active">Provinsi</li>
+                    </ol>
+                    </section>
         
         <div class="box-body">
         <div style="padding-bottom: 10px;"'></div>
@@ -25,9 +25,7 @@
 		    <th>Kabupaten</th>
 		    <th>Jumlah RT</th>
 		    <th>Jumlah RT Pada Server</th>
-		    <th>Modified Time</th>
-		    <th>Created Time</th>
-		    <th width="200px">Action</th>
+		    <th width="200px">Tindakan</th>
                 </tr>
             </thead>
 	    
@@ -74,6 +72,7 @@
                     searching:false ,
                     processing: true,
                     serverSide: true,
+                    deferRender: true,
                     lengthMenu: [
                                 [ 20, -1],
                                 [ 20, 'All'],
@@ -94,7 +93,7 @@
                             "render": function (data, type, full, meta) {
                     var kab_ = "";if (data) {var kab_ = data.replaceAll('"', '');}
                     return kab_;
-                }},{"data": "jmhbsbps","orderable": false},{"data": "jmh_ruta","orderable": false,},{"data": "modified_time","orderable": false},{"data": "created_time","orderable": false},
+                }},{"data": "jmhbsbps","orderable": false},{"data": "jmh_ruta","orderable": false,},
                         {
                             "data" : "action",
                             "orderable": false,

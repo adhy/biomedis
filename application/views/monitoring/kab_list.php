@@ -1,20 +1,20 @@
-<section class="content-header">
-<ol class="breadcrumb">
-<li><a href="<?=base_url()?>"><i class="fa fa-dashboard"></i> Index</a></li>
-<li><a href="<?=base_url($this->session->userdata('urlv1'))?>">Koordinator Wilayah</a></li>
-<li><a href="<?=base_url('korwil1/'.$this->session->userdata('urlv2'))?>">Provinsi</a></li>
-<li class="active">Kab/Kota</li>
-</ol>
-</section>
-<div class="content">
+<div class="container container-table">
     <section class="content">
-        <div class="row">
+        <div class="row vertical-center-row">
             <div class="col-xs-12">
                 <div class="box box-success box-solid">
     
                     <div class="box-header">
-                        <h3 class="box-title">DATA MONITORING BIOMEDIS KAB/KOTA <?=$this->session->userdata('nmkab')?></h3>
+                        <h3 class="box-title">DATA MONITORING BIOMEDIS KAB/KOTA  <?=$this->session->userdata('publickab')?> <?=$this->session->userdata('nmkab')?> PROVINSI <?=$this->session->userdata('nmprov')?></h3>
                     </div>
+                    <section class="content-header">
+                    <ol class="breadcrumb">
+                    <li><a href="<?=base_url()?>"><i class="fa fa-dashboard"></i> Index</a></li>
+                    <li><a href="<?=base_url($this->session->userdata('urlv1'))?>">Koordinator Wilayah</a></li>
+                    <li><a href="<?=base_url('korwil1/'.$this->session->userdata('urlv2'))?>">Provinsi</a></li>
+                    <li class="active">Kab/Kota</li>
+                    </ol>
+                    </section><br>
         
         <div class="box-body">
         <div style="padding-bottom: 10px;"'></div>
@@ -24,11 +24,8 @@
                     <th width="30px">No</th>
                     <th>Kecamatan</th>
 		    <th>Kode NKS</th>
-		    <th>Jumlah RT</th>
 		    <th>Jumlah RT Pada Server</th>
-		    <th>Modified Time</th>
-		    <th>Created Time</th>
-		    <th width="200px">Action</th>
+		    <th width="200px">Tindakan</th>
                 </tr>
             </thead>
 	    
@@ -80,6 +77,7 @@
                     searching:false ,
                     processing: true,
                     serverSide: true,
+                    deferRender: true,
                     ajax: {"url": "<?=base_url()?>korwil1/jsonkab", "type": "POST","async": true},
                     columns: [
                         {
@@ -90,13 +88,15 @@
                     var kec_ = "";if (data) {var kec_ = data.replaceAll('"', '');}
                     return kec_;
                 }}
-                ,{"data": "kode_nks","className":"kode_nks_td",
-                            "render": function (data, type, full, meta) {
-                    var kode_nks = "";if (data) {var kode_nks = data.replaceAll('"', '');}
-                    return kode_nks;
-                }
+                ,{"data": "kode_nks"
             },
-                {"data": "jmhbsbps"},{"data": "jmh_ruta"},{"data": "modified_time"},{"data": "created_time"},
+            // {"data": "kode_nks","className":"kode_nks_td",
+            //                 "render": function (data, type, full, meta) {
+            //         var kode_nks = "";if (data) {var kode_nks = data.replaceAll('"', '');}
+            //         return kode_nks;
+            //     }
+            // },
+                {"data": "jmh_ruta"},
                         {
                             "data" : "action",
                             "orderable": false,

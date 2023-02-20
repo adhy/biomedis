@@ -1,21 +1,21 @@
-<section class="content-header">
-<ol class="breadcrumb">
-<li><a href="<?=base_url()?>"><i class="fa fa-dashboard"></i> Index</a></li>
-<li><a href="<?=base_url($this->session->userdata('urlv1'))?>">Koordinator Wilayah</a></li>
-<li><a href="<?=base_url('korwil1/'.$this->session->userdata('urlv2'))?>">Provinsi</a></li>
-<li><a href="<?=base_url('korwil1/'.$this->session->userdata('urlv3'))?>">Kab/Kota</a></li>
-<li class="active">NKS</li>
-</ol>
-</section>
-<div class="content">
+<div class="container container-table">
     <section class="content">
-        <div class="row">
+        <div class="row vertical-center-row">
             <div class="col-xs-12">
                 <div class="box box-success box-solid">
     
                     <div class="box-header">
-                        <h3 class="box-title">DATA MONITORING BIOMEDIS NKS <?=$this->session->userdata('nmnks')?></h3>
+                        <h3 class="box-title">DAFTAR RUMAH TANGGA NKS <?=$this->session->userdata('nmnks')?> KAB/KOTA  <?=$this->session->userdata('publickab')?> <?=$this->session->userdata('nmkab')?> PROVINSI <?=$this->session->userdata('publicprov');?> <?=$this->session->userdata('nmprov')?></h3>
                     </div>
+                    <section class="content-header">
+                    <ol class="breadcrumb">
+                    <li><a href="<?=base_url()?>"><i class="fa fa-dashboard"></i> Index</a></li>
+                    <li><a href="<?=base_url($this->session->userdata('urlv1'))?>">Koordinator Wilayah</a></li>
+                    <li><a href="<?=base_url('korwil1/'.$this->session->userdata('urlv2'))?>">Provinsi</a></li>
+                    <li><a href="<?=base_url('korwil1/'.$this->session->userdata('urlv3'))?>">Kab/Kota</a></li>
+                    <li class="active">NKS</li>
+                    </ol>
+                    </section><br>
         
         <div class="box-body">
         <div style="padding-bottom: 10px;"'></div>
@@ -23,12 +23,13 @@
             <thead>
                 <tr>
                     <th width="30px">No</th>
-                    <th>Kecamatan</th>
-		    <th>Nama KRT</th>
-            <th>Jumlah RT Pada Server</th>
+		    <th>Nama Kepala RuTa</th>
+            <th>Jumlah ART</th>
+            <th>Jumlah Balita</th>
+            <th>Jumlah WUS</th>
 		    <th>Status Entri</th>
-		    <th>Modified Time</th>
-		    <th>Created Time</th>
+		    <th>Nama Enum 1</th>
+		    <th>Waktu Perubahan Terakhir</th>
 		    <!--<th width="200px">Action</th>-->
                 </tr>
             </thead>
@@ -84,6 +85,9 @@ tfoot>tr> th.kec_td.nm_krt_td{ color: transparent !important; }
                 };
 
                 var t = $("#mytable").dataTable({
+                    language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/id.json',
+                },
     //                 drawCallback: function () {
     //     var api = this.api();
     //     $( 'tfoot th' ).html('Total: ' + 
@@ -106,6 +110,7 @@ tfoot>tr> th.kec_td.nm_krt_td{ color: transparent !important; }
                     },
                    // bLengthChange: false,
                     searching:false ,
+                    deferRender: true,
                     lengthMenu: [
                                 [ 20, -1],
                                 [ 20, 'All'],
@@ -117,18 +122,14 @@ tfoot>tr> th.kec_td.nm_krt_td{ color: transparent !important; }
                         {
                             "data": "caseids",
                             "orderable": false
-                        },{"data": "kec","className":"kec_td", "visible": false,
-                            "render": function (data, type, full, meta) {
-                    var kec_ = "";if (data) {var kec_ = data.replaceAll('"', '');}
-                    return kec_;
-                }}
+                        }
                 ,{"data": "krt","className":"nm_krt_td",
                             "render": function (data, type, full, meta) {
                     var nm_krt = "";if (data) {var nm_krt = data.replaceAll('"', '');}
                     return nm_krt;
                 }
             },
-                {"data": "jmh_art"},{"data": "status"},{"data": "modified_time"},{"data": "created_time"},
+                {"data": "jmh_art"},{"data": "jmh_balita"},{"data": "jmh_wus"},{"data": "status"},{"data": "nm_entry"},{"data": "modified_time"},
                 //         {
                 //             "data" : "action",
                 //             "orderable": false,
@@ -142,7 +143,7 @@ tfoot>tr> th.kec_td.nm_krt_td{ color: transparent !important; }
                 //         }
                     ],
                     ordering: false,
-                    rowGroup: {dataSrc: ['kec']},
+                    //rowGroup: {dataSrc: ['kec']},
                     order: [[0, 'desc']],
                     rowCallback: function(row, data, iDisplayIndex) {
                         var info = this.fnPagingInfo();

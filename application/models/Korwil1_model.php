@@ -17,17 +17,18 @@ class Korwil1_model extends CI_Model
 
     // datatables
     function json($data) {
-        $this->datatables->select("caseids,json_extract(uncompress(questionnaire), '$.id.P101')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.PROP_TEXT')as prov,count(json_extract(uncompress(questionnaire), '$.id.P101'))as jmh_ruta,modified_time,created_time");
+        //$this->datatables->select("caseids,json_extract(uncompress(questionnaire), '$.id.P101')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.PROP_TEXT')as prov,count(json_extract(uncompress(questionnaire), '$.id.P101'))as jmh_ruta,modified_time,created_time");
+        $this->datatables->select("caseids,json_extract(uncompress(questionnaire), '$.id.P101')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.PROP_TEXT')as prov,count(json_extract(uncompress(questionnaire), '$.id.P101'))as jmh_ruta");
         $this->datatables->from('ssgi2022_dict');
         //$this->datatables->where("json_extract(uncompress(questionnaire), '$.id.P101')=13");
         $this->datatables->add_column("jmhbsbps",'$1','jmhbs(caseids)');
-        $this->datatables->add_column("modified_time",'$1','convdatime(modified_time)');
-        $this->datatables->add_column("created_time",'$1','convdatime(created_time)');
+        //$this->datatables->add_column("modified_time",'$1','convdatime(modified_time)');
+        //$this->datatables->add_column("created_time",'$1','convdatime(created_time)');
         $this->datatables->where_in("json_extract(uncompress(`questionnaire`), '$.BLOK_13.NM_KORWIL')",$data);
         $this->datatables->group_by("json_extract(uncompress(questionnaire), '$.id.P101')");
         //add this line for join
         //$this->datatables->join('table2', 'vis.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('korwil1/provinsi/$1'),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-danger btn-sm')), 'substr(caseids,0,2)');
+        $this->datatables->add_column('action', anchor(site_url('korwil1/provinsi/$1'),'Lihat Daftar Kab/Kota', array('class' => 'btn btn-default btn-sm')), 'substr(caseids,0,2)');
         return $this->datatables->generate();
     }
 

@@ -1,18 +1,18 @@
-<section class="content-header">
-<ol class="breadcrumb">
-<li><a href="<?=base_url()?>"><i class="fa fa-dashboard"></i> Index</a></li>
-<li class="active">Koordinator Wilayah</li>
-</ol>
-</section>
-<div class="content">
+<div class="container container-table">
     <section class="content">
-        <div class="row">
+        <div class="row vertical-center-row">
             <div class="col-xs-12">
                 <div class="box box-success box-solid">
     
                     <div class="box-header">
                         <h3 class="box-title">DATA MONITORING BIOMEDIS KOORDINATOR WILAYAH I</h3>
                     </div>
+                    <section class="content-header">
+                    <ol class="breadcrumb">
+                    <li><a href="<?=base_url()?>"><i class="fa fa-dashboard"></i> Index</a></li>
+                    <li class="active">Koordinator Wilayah</li>
+                    </ol>
+                    </section>
         
         <div class="box-body">
         <div style="padding-bottom: 10px;"'></div>
@@ -21,12 +21,10 @@
                 <tr>
                     <th width="30px">No</th>
 		    <th>Kode Provinsi</th>
-		    <th>Provinsi</th>
-		    <th>Jumlah RT</th>
+		    <th>Nama Provinsi</th>
+		    <th>Jumlah RT Seharusnya</th>
 		    <th>Jumlah RT di Server</th>
-		    <th>Modified Time</th>
-		    <th>Created Time</th>
-		    <th width="200px">Action</th>
+		    <th width="200px">Tindakan</th>
                 </tr>
             </thead>
 	    
@@ -75,6 +73,7 @@
                     processing: true,
                     serverSide: true,
                     searching: false,
+                    deferRender: true,
                     ajax: {"url": "korwil1/json", "type": "POST","async": true},
                     columns: [
                         {
@@ -91,7 +90,7 @@
                             "render": function (data, type, full, meta) {
                     var prov_ = "";if (data) {var prov_ = data.replaceAll('"', '');}
                     return prov_;
-                }},{"data": "jmhbsbps","orderable": false},{"data": "jmh_ruta","orderable": false},{"data": "modified_time","orderable": false},{"data": "created_time","orderable": false},
+                }},{"data": "jmhbsbps","orderable": false},{"data": "jmh_ruta","orderable": false},
                         {
                             "data" : "action",
                             "orderable": false,

@@ -16,14 +16,15 @@ class Nks_model extends CI_Model
     }
 
     // datatables
-    function json($data) {
-        $this->datatables->select("concat('KECAMATAN ',json_unquote(json_extract(uncompress(questionnaire), '$.BLOK_13.KEC_TEXT')))as kec,caseids,json_extract(uncompress(questionnaire), '$.BLOK_13.KRT_UP')as krt,json_extract(uncompress(questionnaire), '$.id.P108')as jmh_art,modified_time,created_time,partial_save_mode");
+    function json($da,$ad) {
+        $this->datatables->select("concat('KECAMATAN ',json_unquote(json_extract(uncompress(questionnaire), '$.BLOK_13.KEC_TEXT')))as kec,caseids,json_extract(uncompress(questionnaire), '$.BLOK_13.KRT_UP')as krt,JSON_LENGTH(uncompress(questionnaire), '$.BLOK_4')as jmh_art,JSON_LENGTH(uncompress(questionnaire), '$.IND')as jmh_balita,JSON_LENGTH(uncompress(questionnaire), '$.WUS')as jmh_wus,json_unquote(json_extract(uncompress(questionnaire), '$.BLOK_13.NM_ENTRY'))as nm_entry,modified_time,created_time,partial_save_mode");
         $this->datatables->from('ssgi2022_dict');
         //$this->datatables->where("json_extract(uncompress(questionnaire), '$.id.P101')=13");
         $this->datatables->add_column("status",'$1','cstatus(partial_save_mode)');
         $this->datatables->add_column("modified_time",'$1','convdatime(modified_time)');
-        $this->datatables->add_column("created_time",'$1','convdatime(created_time)');
-        $this->datatables->where("json_extract(uncompress(questionnaire), '$.id.P107')='".$data."'");
+        //$this->datatables->add_column("created_time",'$1','convdatime(created_time)');
+        $this->datatables->where($da);
+        $this->datatables->where($ad);
         $this->datatables->group_by("json_extract(uncompress(questionnaire), '$.id.P108')");
         //add this line for join
         //$this->datatables->join('table2', 'vis.field = table2.field');

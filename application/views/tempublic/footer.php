@@ -1,10 +1,8 @@
  <!-- /.content-wrapper -->
  <footer class="footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.4.0
+                <div class="text-center">
+                    <strong>Aplikasi Monitoring Kemajuan Data Blok Biomedis- Survei Kesehatan Indonesia 2023</strong>
                 </div>
-                <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-                reserved.
             </footer>
 
             <!-- Control Sidebar -->

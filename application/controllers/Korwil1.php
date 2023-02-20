@@ -51,11 +51,11 @@ class Korwil1 extends CI_Controller
         $this->session->set_userdata('urlv3', $urlv3);
         $kabid = substr($idkab, 2, 4);
         $nmkab="json_extract(uncompress(questionnaire), '$.BLOK_13.KAB_TEXT')as kab";
-        $where="json_extract(uncompress(questionnaire), '$.id.P102')=".$kabid."";
+        $where="json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')=".$idkab."";
         $group="json_extract(uncompress(questionnaire), '$.BLOK_13.KAB_TEXT')";
         $nmkabrow=$this->Kab_model->get_by_id($nmkab,$where,$group);
         $this->session->set_userdata('nmkab', str_replace('"','',$nmkabrow->kab));
-        $this->session->set_userdata('publickab', $kabid);
+        $this->session->set_userdata('publickab', $idkab);
         $this->template->tempub('monitoring/kab_list');
     } 
     public function jsonkab() {
@@ -77,9 +77,11 @@ class Korwil1 extends CI_Controller
     } 
     public function jsonnks() {
         $idkode_nks=$this->session->userdata('publicnks');
-        $contoh='ini jsonprov';
+        $idkode_kab=$this->session->userdata('publickab');
+        $kab="json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')='".$idkode_kab."'";
+        $nks="json_extract(uncompress(questionnaire), '$.id.P107')='".$idkode_nks."'";
         header('Content-Type: application/json');
-        echo $this->Nks_model->json($idkode_nks);
+        echo $this->Nks_model->json($kab,$nks);
     }
 
 

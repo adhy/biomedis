@@ -17,17 +17,18 @@ class Provinsi_model extends CI_Model
 
     // datatables
     function json($data) {
-        $this->datatables->select("caseids,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB_TEXT')as kab,count(json_extract(uncompress(`questionnaire`), '$.BLOK_13.KAB')) as jmh_ruta,modified_time,created_time");
+        $this->datatables->select("caseids,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB_TEXT')as kab,count(json_extract(uncompress(`questionnaire`), '$.BLOK_13.KAB')) as jmh_ruta");
+        //$this->datatables->select("caseids,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')as kode_p,json_extract(uncompress(questionnaire), '$.BLOK_13.KAB_TEXT')as kab,count(json_extract(uncompress(`questionnaire`), '$.BLOK_13.KAB')) as jmh_ruta,modified_time,created_time");
         $this->datatables->from('ssgi2022_dict');
         //$this->datatables->where("json_extract(uncompress(questionnaire), '$.id.P101')=13");
         $this->datatables->add_column("jmhbsbps",'$1','jmhbs(caseids)');
-        $this->datatables->add_column("modified_time",'$1','convdatime(modified_time)');
-        $this->datatables->add_column("created_time",'$1','convdatime(created_time)');
+        // $this->datatables->add_column("modified_time",'$1','convdatime(modified_time)');
+        // $this->datatables->add_column("created_time",'$1','convdatime(created_time)');
         $this->datatables->where("substr(caseids,1,2)",$data);
         $this->datatables->group_by("json_extract(uncompress(questionnaire), '$.BLOK_13.KAB')");
         //add this line for join
         //$this->datatables->join('table2', 'vis.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('korwil1/kab_kota/$1'),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-danger btn-sm')), 'substr(caseids,0,4)');
+        $this->datatables->add_column('action', anchor(site_url('korwil1/kab_kota/$1'),'Lihat Kecamatan dan NKS', array('class' => 'btn btn-default btn-sm')), 'substr(caseids,0,4)');
         return $this->datatables->generate();
     }
 

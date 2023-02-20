@@ -40,7 +40,7 @@
                 <a href="<?php echo base_url() ?>korwil" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>RISKESDAS</b> 2023</span>
+                    <span class="logo-lg"><b>SKI</b> 2023</span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" >
@@ -49,13 +49,13 @@
                         <ul class="nav navbar-nav">                          
 
 
-                            <!-- User Account: style can be found in dropdown.less -->
+                            <!-- User Account: style can be found in dropdown.less
                             <li class="dropdown user user-menu">
                                 <a href="<?php echo base_url() ?>auth" class="dropdown-toggle">
                                 <span class="hidden-xs"><i class="fa fa-fw fa-sign-in"></i>MASUK </span>
                                 </a>
                             </li>
-                            <!-- Control Sidebar Toggle Button -->
+                             Control Sidebar Toggle Button -->
                         </ul>
                     </div>
 

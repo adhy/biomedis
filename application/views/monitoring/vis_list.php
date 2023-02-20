@@ -66,6 +66,7 @@
                     },
                     processing: true,
                     serverSide: true,
+                    deferRender: true,
                     ajax: {"url": "monitoring/json", "type": "POST"},
                     columns: [
                         {
