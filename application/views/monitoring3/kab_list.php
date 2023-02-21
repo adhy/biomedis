@@ -11,7 +11,7 @@
                     <ol class="breadcrumb">
                     <li><a href="<?=base_url()?>"><i class="fa fa-dashboard"></i> Index</a></li>
                     <li><a href="<?=base_url($this->session->userdata('urlv1'))?>">Koordinator Wilayah</a></li>
-                    <li><a href="<?=base_url('korwil1/'.$this->session->userdata('urlv2'))?>">Provinsi</a></li>
+                    <li><a href="<?=base_url('korwil2/'.$this->session->userdata('urlv2'))?>">Provinsi</a></li>
                     <li class="active">Kab/Kota</li>
                     </ol>
                     </section><br>
